@@ -1,0 +1,28 @@
+[general]
+library_name = "libindicators"
+output_file_path = "../src/LibIndicators.jl"
+module_name = "LibIndicators"
+jll_pkg_name = "TulipIndicators_jll"
+output_api_file_path = "../src/api.jl"
+output_common_file_path = "../src/base.jl"
+export_symbol_prefixes = []
+is_local_header_only = true
+
+[codegen]
+use_julia_bool = true
+is_function_strictly_typed = true
+opaque_func_arg_as_PtrCvoid = false
+opaque_as_mutable_struct = true
+use_ccall_macro = true
+wrap_variadic_function = false
+field_access_method_list = []
+function_argument_conflict_symbols = []
+add_record_constructors = []
+
+[codegen.macro]
+macro_mode = "basic"
+functionlike_macro_includelist = []
+add_comment_for_skipped_macro = false
+ignore_header_guards = false
+ignore_header_guards_with_suffixes = []
+ignore_pure_definition = true
