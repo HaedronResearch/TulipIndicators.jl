@@ -2,7 +2,7 @@
 
 Julia bindings for [Tulip Indicators](https://github.com/TulipCharts/tulipindicators).
 
-Dispatches on basic container types only, but `Tables.jl` compatible wrappers will be considered for the future.
+Dispatches on basic array types only, but `Tables.jl` compatible wrappers will be considered for the future.
 
 This package is a work in progress.
 
