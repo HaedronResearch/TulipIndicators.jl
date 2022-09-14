@@ -7,7 +7,7 @@ $(TYPEDSIGNATURES)
 Return information about an indicator as a `ti_indicator_info` struct.
 """
 @inline function ti_find_indicator(name::Symbol)
-	info = @ccall libindicators.ti_find_indicator(name::Ptr{Cchar})::Ptr{ti_indicator_info}
+	info = @ccall libindicators.ti_find_indicator(name::Cstring)::Ptr{ti_indicator_info}
 	info == C_NULL && throw(ArgumentError("Invalid indicator identififer"))
 	unsafe_load(info)
 end
@@ -18,7 +18,7 @@ Return global information about the Tulip Indicators install.
 """
 function ti_info()::Dict{Symbol, Union{String, Clong, Cint}}
 	Dict{Symbol, Union{String, Clong, Cint}}(
-		:version => (@ccall libindicators.ti_version()::Ptr{Cchar}) |> unsafe_string,
+		:version => (@ccall libindicators.ti_version()::Cstring) |> unsafe_string,
 		:build => (@ccall libindicators.ti_build()::Clong),
 		:indicator_count => (@ccall libindicators.ti_indicator_count()::Cint)
 	)
