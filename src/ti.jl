@@ -43,19 +43,19 @@ end
 $(TYPEDSIGNATURES)
 Compute Tulip indicator.
 """
-function ti(name::Symbol, Pₜ::AbstractVector{Vector{Cdouble}}, opt::AbstractVector{Cdouble}=Cdouble[]; validate::Bool=true, pad::Bool=true, padval::Union{Missing, Cdouble}=missing)
+function ti(name::Symbol, Pₜ::AbstractVector{Vector{TI_REAL}}, opt::AbstractVector{TI_REAL}=TI_REAL[]; validate::Bool=true, pad::Bool=true, padval::Union{Missing, TI_REAL}=missing)
 	info = ti_find_indicator(name)
 	validate && ti_validate_inputs(name, Pₜ, opt, info)
 
 	n = length(Pₜ[1])
-	τ = @ccall $(info.start)(opt::Ref{Cdouble})::Cint
+	τ = @ccall $(info.start)(opt::Ref{TI_REAL})::Cint
 	Xₜ = [zeros(n - τ) for i in 1:info.outputs]
-	code = @ccall $(info.indicator)(n::Cint, Pₜ::Ref{Ptr{Cdouble}}, opt::Ref{Cdouble}, Xₜ::Ref{Ptr{Cdouble}})::Cint
+	code = @ccall $(info.indicator)(n::Cint, Pₜ::Ref{Ptr{TI_REAL}}, opt::Ref{TI_REAL}, Xₜ::Ref{Ptr{TI_REAL}})::Cint
 	validate && checkexit(code)
 
 	if pad && τ > 0
 		if ismissing(padval)
-			Xₜ = convert(Vector{Vector{Union{Missing, Cdouble}}}, Xₜ)
+			Xₜ = convert(Vector{Vector{Union{Missing, TI_REAL}}}, Xₜ)
 		end
 		prependpadding!(Xₜ, τ, padval)
 	end
@@ -66,7 +66,7 @@ end
 $(TYPEDSIGNATURES)
 `ti` call that takes and returns matrices.
 """
-@inline function ti(name::Symbol, Pₜ::AbstractMatrix{Cdouble}, opt::AbstractVector{Cdouble}=Cdouble[]; validate::Bool=true, pad::Bool=true, padval::Union{Missing, Cdouble}=missing)
+@inline function ti(name::Symbol, Pₜ::AbstractMatrix{TI_REAL}, opt::AbstractVector{TI_REAL}=TI_REAL[]; validate::Bool=true, pad::Bool=true, padval::Union{Missing, TI_REAL}=missing)
 	ti(name, tovectors(Pₜ), opt; validate=validate, pad=pad, padval=padval) |> tomatrix
 end
 
