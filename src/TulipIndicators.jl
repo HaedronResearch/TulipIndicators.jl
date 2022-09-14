@@ -3,8 +3,8 @@ module TulipIndicators
 using TulipIndicators_jll
 using DocStringExtensions: TYPEDSIGNATURES
 
-export ti, tc
-export ti_info, tc_info
+export ti, ti_info
+export tc, tc_info
 
 include("base.jl")
 include("util.jl")

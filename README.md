@@ -76,5 +76,6 @@ julia> ti(:atr, hcat(hlc...), [3.]; pad=false) # No padding
 * This avoids a whole bunch of unnecessary function definitions because `@ccall`/`ccall` [cannot be efficiently `@eval`ed over](https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/#Non-constant-Function-Specifications).
 
 ## TODO
+* Interface that allows `Real` subtyped inputs and/or options.
 * Publish unit tests
 
