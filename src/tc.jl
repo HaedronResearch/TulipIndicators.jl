@@ -44,7 +44,7 @@ function tc(name::Symbol, Pₜ::AbstractVector{Vector{Cdouble}}, opt::AbstractVe
 	info = tc_find_candle(name)
 	n = length(Pₜ[1])
 	Xₜ = [zeros(n) for i in 1:length(Pₜ)]
-	code = @ccall $(info.candle)(n::Cint, Pₜ::Ptr{Ptr{Cdouble}}, opt::Ptr{Cdouble}, Xₜ::Ptr{Ptr{Cdouble}})::Cint
+	code = @ccall $(info.candle)(n::Cint, Pₜ::Ref{Ptr{Cdouble}}, opt::Ref{Cdouble}, Xₜ::Ref{Ptr{Cdouble}})::Cint
 	validate && checkexit(code)
 	Xₜ
 end

@@ -48,9 +48,9 @@ function ti(name::Symbol, Pₜ::AbstractVector{Vector{Cdouble}}, opt::AbstractVe
 	validate && ti_validate_inputs(name, Pₜ, opt, info)
 
 	n = length(Pₜ[1])
-	τ = @ccall $(info.start)(opt::Ptr{Cdouble})::Cint
+	τ = @ccall $(info.start)(opt::Ref{Cdouble})::Cint
 	Xₜ = [zeros(n - τ) for i in 1:info.outputs]
-	code = @ccall $(info.indicator)(n::Cint, Pₜ::Ptr{Ptr{Cdouble}}, opt::Ptr{Cdouble}, Xₜ::Ptr{Ptr{Cdouble}})::Cint
+	code = @ccall $(info.indicator)(n::Cint, Pₜ::Ref{Ptr{Cdouble}}, opt::Ref{Cdouble}, Xₜ::Ref{Ptr{Cdouble}})::Cint
 	validate && checkexit(code)
 
 	if pad && τ > 0
