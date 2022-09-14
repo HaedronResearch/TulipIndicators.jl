@@ -2,7 +2,7 @@
 
 Julia bindings for [Tulip Indicators](https://github.com/TulipCharts/tulipindicators).
 
-Dispatches on basic container types only (`AbstractArray`, `AbstractMatrix`, etc), but `Tables.jl` compatible wrappers will be considered for the future.
+Dispatches on basic container types only, but `Tables.jl` compatible wrappers will be considered for the future.
 
 This package is a work in progress.
 
@@ -76,6 +76,5 @@ julia> ti(:atr, hcat(hlc...), [3.]; pad=false) # No padding
 * This avoids a whole bunch of unnecessary function definitions because `@ccall`/`ccall` [cannot be efficiently `@eval`ed over](https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/#Non-constant-Function-Specifications).
 
 ## TODO
-* A wrapper around `ti_find_indicator` to return indicator info in a readable format
 * Publish unit tests
 
