@@ -1,7 +1,7 @@
 module TulipIndicators
 
 using TulipIndicators_jll
-using DocStringExtensions
+using DocStringExtensions: TYPEDSIGNATURES
 
 export ti, tc
 export ti_info, tc_info
