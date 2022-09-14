@@ -4,6 +4,19 @@ Common Utilities
 
 """
 $(TYPEDSIGNATURES)
+Convert indicator type int to a string.
+"""
+function ti_type(t::Integer)
+	t == TI_TYPE_OVERLAY && return "overlay"
+	t == TI_TYPE_INDICATOR && return "indicator"
+	t == TI_TYPE_MATH && return "math"
+	t == TI_TYPE_SIMPLE && return "simple"
+	t == TI_TYPE_COMPARATIVE && return "comparitive"
+	return "unknown"
+end
+
+"""
+$(TYPEDSIGNATURES)
 Input validation for `ti` calls.
 """
 function ti_validate_inputs(name::Symbol, Pₜ::AbstractVector{Vector{Cdouble}}, opt::AbstractVector{Cdouble}, info::ti_indicator_info)
@@ -16,14 +29,10 @@ $(TYPEDSIGNATURES)
 Check the exit code of `ti` and `tc` calls.
 """
 function checkexit(code::Cint)
-	if code != TI_OKAY
-		if code == TI_INVALID_OPTION
-			throw(ArgumentError("Invalid Option Error"))
-		elseif code == TI_OUT_OF_MEMORY
-			throw(OutOfMemoryError("Out of Memory Error"))
-		end
-		throw(ErrorException("Error of Unknown Cause"))
-	end
+	code == TI_OKAY && return
+	code == TI_INVALID_OPTION && throw(ArgumentError("Invalid Option Error"))
+	code == TI_OUT_OF_MEMORY && throw(OutOfMemoryError("Out of Memory Error"))
+	throw(ErrorException("Error of Unknown Cause"))
 end
 
 """

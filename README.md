@@ -10,27 +10,63 @@ This package is a work in progress.
 Download and install the package from the REPL with `] add <this_repo_url>`.
 
 ## Overview
-The only functions this package exports are `ti` and `tc`.
+The only functions this package exports are: `ti`, `tc`, and `{ti, tc}_info`.
 
-Use `ti` to compute an indicator based on a `Symbol` identifier, valid identifiers can be found [here](https://tulipindicators.org/list). Because of how the upstream C library is written, this function takes in a vector of vectors although a matrix wrapper exists that will convert the input and output for you.
+Use `ti` to compute an indicator based on a `Symbol` identifier, valid identifiers can be found [here](https://tulipindicators.org/list). Because of how the upstream C library is written, this function takes in a vector of vectors although a matrix wrapper function exists that will convert the input and output for you.
 
-Aside from the input vectors/matrix, the indicator may require options to be supplied. The correct number of options and their meanings can be found from the previous link to Tulip Indicators website. Also keeping `validate==true` (default) will assert check that you are using the correct number of options/inputs.
+The indicator may require options (parameters) to be supplied. The meaning and valid number of options can be found at the [upstream Tulip Indicators website](https://tulipindicators.org/list) or by calling `ti_info` with the identifier.
 
-By default `ti` will pad the output with `Missing` values for indicators that introduce a lag. Set `pad=false` if you want to disable padding or `padval=<any>` for another pad value. I decided on this default to keep alignment with datetime arrays (to use DataFrames, etc).
+By default `ti` will pad the output with `Missing` values for indicators that introduce a lag. Set `pad=false` if you want to disable padding or `padval=<Cfloat>` for another pad value. I decided on this default to maintain alignment with DateTime arrays.
 
 The `tc` function provides an interface to Tulip Candles. This is not a priority for me, but the interface exists if you want to play with it. I couldn't find documentation on the candle patterns, but they are part of the upstream C library so I included this interface.
 
 ## Toy Example
 ```julia
 julia> using TulipIndicators
-julia> n=10
-julia> hlc1 = [ones(n), -ones(n), zeros(n)]
-julia> ti(:atr, hlc1, [5.])
-Vector{Union{Missing, Float64}}[[missing, missing, missing, missing, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0]]
 
-julia> hlc2 = hcat(ones(n), -ones(n), zeros(n)) # matrix works too
-julia> ti(:atr, hlc2, [5.])
-Union{Missing, Float64}[missing; missing; missing; missing; 2.0; 2.0; 2.0; 2.0; 2.0; 2.0;;]
+julia> ti_info()
+Dict{Symbol, Union{Int32, Int64, String}} with 3 entries:
+  :version         => "0.9.2"
+  :indicator_count => 104
+  :build           => 1660687722
+
+julia> ti_info(:atr)
+Dict{Symbol, Union{String, Vector{String}}} with 5 entries:
+  :type      => "indicator"
+  :full_name => "Average True Range"
+  :inputs    => ["high", "low", "close"]
+  :outputs   => ["atr"]
+  :options   => ["period"]
+
+julia> n=10
+julia> hlc = [cumsum(ones(n)), -cumsum(ones(n)), zeros(n)]
+julia> ti(:atr, hlc, [3.])
+1-element Vector{Vector{Union{Missing, Float64}}}:
+ [missing, missing, 4.0, 5.333333333333333, 6.888888888888888, 8.592592592592592, 10.395061728395062, 12.263374485596708, 14.175582990397805, 16.11705532693187]
+
+julia> ti(:atr, hcat(hlc...), [3.]) # Matrix works too; Matrix inputs return Matrix outputs
+10×1 Matrix{Union{Missing, Float64}}:
+   missing
+   missing
+  4.0
+  5.333333333333333
+  6.888888888888888
+  8.592592592592592
+ 10.395061728395062
+ 12.263374485596708
+ 14.175582990397805
+ 16.11705532693187
+
+julia> ti(:atr, hcat(hlc...), [3.]; pad=false) # No padding
+8×1 Matrix{Float64}:
+  4.0
+  5.333333333333333
+  6.888888888888888
+  8.592592592592592
+ 10.395061728395062
+ 12.263374485596708
+ 14.175582990397805
+ 16.11705532693187
 ```
 
 ## Details
