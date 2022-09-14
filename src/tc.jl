@@ -2,7 +2,7 @@
 TulipIndicators.jl Candle Interface.
 """
 
-tc_version() = (@ccall libindicators.tc_version()::Ptr{Cchar}) |> unsafe_load
+tc_version() = (@ccall libindicators.tc_version()::Ptr{Cchar}) |> unsafe_string
 tc_build() = @ccall libindicators.tc_build()::Clong
 tc_candle_count() = @ccall libindicators.tc_candle_count()::Cint
 

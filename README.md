@@ -21,7 +21,7 @@ By default `ti` will pad the output with `Missing` values for indicators that in
 The `tc` function provides an interface to Tulip Candles. This is not a priority for me, but the interface exists if you want to play with it. I couldn't find documentation on the candle patterns, but they are part of the upstream C library so I included this interface.
 
 ## Toy Example
-```julia-repl
+```julia
 julia> using TulipIndicators
 julia> n=10
 julia> hlc1 = [ones(n), -ones(n), zeros(n)]

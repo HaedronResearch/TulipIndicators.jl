@@ -2,7 +2,7 @@
 TulipIndicators.jl Indicator Interface.
 """
 
-ti_version() = (@ccall libindicators.ti_version()::Ptr{Cchar}) |> unsafe_load
+ti_version() = (@ccall libindicators.ti_version()::Ptr{Cchar}) |> unsafe_string
 ti_build() = @ccall libindicators.ti_build()::Clong
 ti_indicator_count() = @ccall libindicators.ti_indicator_count()::Cint
 
