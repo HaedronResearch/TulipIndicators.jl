@@ -4,7 +4,5 @@ authors = ["kevindirect <git@kevindirect.com>"]
 version = "0.1.0"
 
 [deps]
-CEnum = "fa961155-64e5-5f13-b03f-caf6b980ea82"
-Clang = "40e3b903-d033-50b4-a0cc-940c62c95e31"
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 TulipIndicators_jll = "b73d36f2-ba1b-519d-99df-fa501440d401"
