@@ -38,7 +38,7 @@ end
 
 """
 $(TYPEDSIGNATURES)
-Compute Tulip candle with name tc_`name`.
+Compute Tulip candle.
 """
 function tc(name::Symbol, Pₜ::AbstractVector{Vector{Cdouble}}, opt::AbstractVector{Cdouble}=Cdouble[]; validate::Bool=true)
 	info = tc_find_candle(name)

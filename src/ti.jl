@@ -41,7 +41,7 @@ end
 
 """
 $(TYPEDSIGNATURES)
-Compute Tulip indicator with name ti_`name`.
+Compute Tulip indicator.
 """
 function ti(name::Symbol, Pₜ::AbstractVector{Vector{Cdouble}}, opt::AbstractVector{Cdouble}=Cdouble[]; validate::Bool=true, pad::Bool=true, padval::Union{Missing, Cdouble}=missing)
 	info = ti_find_indicator(name)
