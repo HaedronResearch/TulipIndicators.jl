@@ -28,23 +28,38 @@ end
 $(TYPEDSIGNATURES)
 Return information about an indicator.
 """
-function ti_info(name::Symbol)::Dict{Symbol, Union{String, Vector{String}}}
-	info = ti_find_indicator(name)
-	Dict{Symbol, Union{String, Vector{String}}}(
+function ti_info(name::Symbol)::Dict{Symbol, Union{String, Vector{Symbol}}}
+	ti_info(ti_find_indicator(name))
+end
+
+"""
+$(TYPEDSIGNATURES)
+Return information about an indicator.
+"""
+function ti_info(info::ti_indicator_info)::Dict{Symbol, Union{String, Vector{Symbol}}}
+	Dict{Symbol, Union{String, Vector{Symbol}}}(
 		:type => ti_type(info.type),
 		:full_name => unsafe_string(info.full_name),
-		:inputs => [unsafe_string(info.input_names[i]) for i in 1:info.inputs],
-		:options => [unsafe_string(info.option_names[i]) for i in 1:info.options],
-		:outputs => [unsafe_string(info.output_names[i]) for i in 1:info.outputs]
+		:inputs => [Symbol(unsafe_string(info.input_names[i])) for i in 1:info.inputs],
+		:options => [Symbol(unsafe_string(info.option_names[i])) for i in 1:info.options],
+		:outputs => [Symbol(unsafe_string(info.output_names[i])) for i in 1:info.outputs]
 	)
 end
 
 """
 $(TYPEDSIGNATURES)
-Compute Tulip indicator.
+Compute Tulip indicator from indicator `name`.
 """
 function ti(name::Symbol, Pₜ::AbstractVector{Vector{TI_REAL}}, opt::AbstractVector{TI_REAL}=TI_REAL[]; validate::Bool=true, pad::Bool=true, padval::Union{Missing, TI_REAL}=missing)
 	info = ti_find_indicator(name)
+	ti(info, Pₜ, opt; validate=validate, pad=pad, padval=padval)
+end
+
+"""
+$(TYPEDSIGNATURES)
+Compute Tulip indicator from indicator `info`.
+"""
+function ti(info::ti_indicator_info, Pₜ::AbstractVector{Vector{TI_REAL}}, opt::AbstractVector{TI_REAL}=TI_REAL[]; validate::Bool=true, pad::Bool=true, padval::Union{Missing, TI_REAL}=missing)
 	validate && ti_validate_inputs(name, Pₜ, opt, info)
 
 	n = length(Pₜ[1])
