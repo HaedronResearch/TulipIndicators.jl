@@ -1,5 +1,5 @@
 """
-TulipIndicators.jl Tables.jl Indicator Interface.
+TulipIndicators.jl Indicator Tables.jl Interface.
 """
 
 """

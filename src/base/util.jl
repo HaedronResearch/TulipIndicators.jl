@@ -4,28 +4,6 @@ Common Utilities
 
 """
 $(TYPEDSIGNATURES)
-Convert indicator type int to a string.
-"""
-function ti_type(t::Integer)
-	t == TI_TYPE_OVERLAY && return "overlay"
-	t == TI_TYPE_INDICATOR && return "indicator"
-	t == TI_TYPE_MATH && return "math"
-	t == TI_TYPE_SIMPLE && return "simple"
-	t == TI_TYPE_COMPARATIVE && return "comparitive"
-	return "unknown"
-end
-
-"""
-$(TYPEDSIGNATURES)
-Input validation for `ti` calls.
-"""
-function ti_validate_inputs(Pₜ::AbstractVector{Vector{TI_REAL}}, opt::AbstractVector{TI_REAL}, info::ti_indicator_info)
-	@assert length(Pₜ) == info.inputs "indicator requires exactly $(info.inputs) input vector(s)"
-	@assert length(opt) == info.options "indicator requires exactly $(info.options) option(s)"
-end
-
-"""
-$(TYPEDSIGNATURES)
 Check the exit code of `ti` and `tc` calls.
 """
 function checkexit(code::Cint)
