@@ -38,11 +38,11 @@ end
 $(TYPEDSIGNATURES)
 Return global information about the Tulip Indicators install.
 """
-function ti_info()::Dict{Symbol, Union{String, Clong, Cint}}
-	Dict{Symbol, Union{String, Clong, Cint}}(
-		:version => (@ccall libindicators.ti_version()::Cstring) |> unsafe_string,
-		:build => (@ccall libindicators.ti_build()::Clong),
-		:indicator_count => (@ccall libindicators.ti_indicator_count()::Cint)
+function ti_info()::NamedTuple
+	(
+		version = (@ccall libindicators.ti_version()::Cstring) |> unsafe_string,
+		build = (@ccall libindicators.ti_build()::Clong),
+		indicator_count = (@ccall libindicators.ti_indicator_count()::Cint)
 	)
 end
 
@@ -50,7 +50,7 @@ end
 $(TYPEDSIGNATURES)
 Return information about an indicator.
 """
-function ti_info(name::Symbol)::Dict{Symbol, Union{String, Vector{Symbol}}}
+function ti_info(name::Symbol)::NamedTuple
 	ti_info(ti_find_indicator(name))
 end
 
@@ -58,13 +58,13 @@ end
 $(TYPEDSIGNATURES)
 Return information about an indicator.
 """
-function ti_info(info::ti_indicator_info)::Dict{Symbol, Union{String, Vector{Symbol}}}
-	Dict{Symbol, Union{String, Vector{Symbol}}}(
-		:type => ti_type(info.type),
-		:full_name => unsafe_string(info.full_name),
-		:inputs => [Symbol(unsafe_string(info.input_names[i])) for i in 1:info.inputs],
-		:options => [Symbol(unsafe_string(info.option_names[i])) for i in 1:info.options],
-		:outputs => [Symbol(unsafe_string(info.output_names[i])) for i in 1:info.outputs]
+function ti_info(info::ti_indicator_info)::NamedTuple
+	(
+		type = ti_type(info.type),
+		full_name = unsafe_string(info.full_name),
+		inputs = [Symbol(unsafe_string(info.input_names[i])) for i in 1:info.inputs],
+		options = [Symbol(unsafe_string(info.option_names[i])) for i in 1:info.options],
+		outputs = [Symbol(unsafe_string(info.output_names[i])) for i in 1:info.outputs]
 	)
 end
 

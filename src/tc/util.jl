@@ -16,11 +16,11 @@ end
 $(TYPEDSIGNATURES)
 Return global information about the Tulip Candles install.
 """
-function tc_info()::Dict{Symbol, Union{String, Clong, Cint}}
-	Dict{Symbol, Union{String, Clong, Cint}}(
-		:version => (@ccall libindicators.tc_version()::Cstring) |> unsafe_string,
-		:build => (@ccall libindicators.tc_build()::Clong),
-		:indicator_count => (@ccall libindicators.tc_candle_count()::Cint)
+function tc_info()::NamedTuple
+	(
+		version = (@ccall libindicators.tc_version()::Cstring) |> unsafe_string,
+		build = (@ccall libindicators.tc_build()::Clong),
+		indicator_count = (@ccall libindicators.tc_candle_count()::Cint)
 	)
 end
 
@@ -28,11 +28,11 @@ end
 $(TYPEDSIGNATURES)
 Return information about a candle.
 """
-function tc_info(name::Symbol)::Dict{Symbol, Union{String, tc_set}}
+function tc_info(name::Symbol)::NamedTuple
 	info = tc_find_candle(name)
-	Dict{Symbol, Union{String, tc_set}}(
-		:full_name => unsafe_string(info.full_name),
-		:pattern => info.pattern
+	(
+		full_name = unsafe_string(info.full_name),
+		pattern = info.pattern
 	)
 end
 

@@ -12,7 +12,7 @@ The only functions this package exports are: `ti`, `tc`, and `{ti, tc}_info`.
 
 Use `ti` to compute an indicator based on a `Symbol` identifier, valid identifiers can be found [here](https://tulipindicators.org/list). Because of how the upstream C lib is written, the lowest level wrapper method takes in a vector of vectors. Higher level wrappers exist for matrices and Tables.jl compatible sources, although the latter has only been tested with `DataFrames` so far.
 
-The indicator may require options (parameters) to be supplied. The meaning and valid number of options can be found at the [upstream Tulip Indicators website](https://tulipindicators.org/list) or by calling `ti_info` with the identifier.
+The indicator may require options (parameters) to be supplied. The meaning and valid number of options can be found at the [upstream Tulip Indicators website](https://tulipindicators.org/list) or by calling `ti_info(:<identifier>)`.
 
 By default `ti` will pad the output with `Missing` values for indicators that introduce a lag. Set `pad=false` if you want to disable padding or `padval=<Cfloat>` for another pad value. I decided on this default to maintain alignment with index arrays.
 
@@ -23,18 +23,10 @@ The `tc` function provides an interface to Tulip Candles. This is not a priority
 julia> using TulipIndicators
 
 julia> ti_info()
-Dict{Symbol, Union{Int32, Int64, String}} with 3 entries:
-  :version         => "0.9.2"
-  :indicator_count => 104
-  :build           => 1660687722
+(version = "0.9.2", build = 1660687722, indicator_count = 104)
 
 julia> ti_info(:atr)
-Dict{Symbol, Union{String, Vector{String}}} with 5 entries:
-  :type      => "indicator"
-  :full_name => "Average True Range"
-  :inputs    => ["high", "low", "close"]
-  :outputs   => ["atr"]
-  :options   => ["period"]
+(type = "indicator", full_name = "Average True Range", inputs = [:high, :low, :close], options = [:period], outputs = [:atr])
 
 julia> n=10
 julia> hlc = [cumsum(ones(n)), -cumsum(ones(n)), zeros(n)]
