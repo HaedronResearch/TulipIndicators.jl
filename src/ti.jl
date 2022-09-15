@@ -60,7 +60,7 @@ $(TYPEDSIGNATURES)
 Compute Tulip indicator from indicator `info`.
 """
 function ti(info::ti_indicator_info, Pₜ::AbstractVector{Vector{TI_REAL}}, opt::AbstractVector{TI_REAL}=TI_REAL[]; validate::Bool=true, pad::Bool=true, padval::Union{Missing, TI_REAL}=missing)
-	validate && ti_validate_inputs(name, Pₜ, opt, info)
+	validate && ti_validate_inputs(Pₜ, opt, info)
 
 	n = length(Pₜ[1])
 	τ = @ccall $(info.start)(opt::Ref{TI_REAL})::Cint

@@ -19,9 +19,9 @@ end
 $(TYPEDSIGNATURES)
 Input validation for `ti` calls.
 """
-function ti_validate_inputs(name::Symbol, Pₜ::AbstractVector{Vector{TI_REAL}}, opt::AbstractVector{TI_REAL}, info::ti_indicator_info)
-	@assert length(Pₜ) == info.inputs "$name requires exactly $(info.inputs) input vector(s)"
-	@assert length(opt) == info.options "$name requires exactly $(info.options) option(s)"
+function ti_validate_inputs(Pₜ::AbstractVector{Vector{TI_REAL}}, opt::AbstractVector{TI_REAL}, info::ti_indicator_info)
+	@assert length(Pₜ) == info.inputs "indicator requires exactly $(info.inputs) input vector(s)"
+	@assert length(opt) == info.options "indicator requires exactly $(info.options) option(s)"
 end
 
 """
