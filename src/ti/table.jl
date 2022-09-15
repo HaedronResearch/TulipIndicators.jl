@@ -1,6 +1,5 @@
 """
-TulipIndicators.jl Indicator Interface.
-Tables.jl consuming interface.
+TulipIndicators.jl Tables.jl Indicator Interface.
 """
 
 """

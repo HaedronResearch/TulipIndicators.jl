@@ -3,8 +3,8 @@ library_name = "libindicators"
 output_file_path = "../src/LibIndicators.jl"
 module_name = "LibIndicators"
 jll_pkg_name = "TulipIndicators_jll"
-output_api_file_path = "../src/api.jl"
-output_common_file_path = "../src/base.jl"
+output_api_file_path = "../src/base/api.jl"
+output_common_file_path = "../src/base/base.jl"
 export_symbol_prefixes = []
 is_local_header_only = true
 

@@ -1,5 +1,5 @@
 """
-TulipIndicators.jl Candle Interface.
+TulipIndicators.jl Base Candle Interface.
 """
 
 """
