@@ -12,13 +12,13 @@ sequentially starting from `col`.
 
 After computing the indicator, the output is converted to the input Table type `T` with the column names set to the tulip's output list.
 """
-function ti(name::Symbol, Tₜ::T, opt::AbstractVector{TI_REAL}=TI_REAL[]; validate::Bool=true, pad::Bool=true, padval::Union{Missing, TI_REAL}=missing, mapping::AbstractVector=[:real=>:close], indexcol::Integer=1, col::Integer=indexcol+1) where T
+function ti(name::Symbol, tableₜ::T, opt::AbstractVector{TI_REAL}=TI_REAL[]; validate::Bool=true, pad::Bool=true, padval::Union{Missing, TI_REAL}=missing, mapping::AbstractVector=[:real=>:close], indexcol::Integer=1, col::Integer=indexcol+1) where T
 	info = ti_find_indicator(name)
 	d = ti_info(info)
 	inputs = replace(d[:inputs], mapping...)
 	outputs = d[:outputs]
 
-	cols = Tables.columns(Tₜ)
+	cols = Tables.columns(tableₜ)
 	names = collect(Symbol, Tables.columnnames(cols))
 
 	if issubset(inputs, names) && unique(inputs) == length(inputs)
