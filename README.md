@@ -10,7 +10,7 @@ Download and install the package from the REPL with `] add <this_repo_url>`.
 ## Overview
 The only functions this package exports are: `ti`, `tc`, and `{ti, tc}_info`.
 
-Use `ti` to compute an indicator based on a `Symbol` identifier, valid identifiers can be found [here](https://tulipindicators.org/list). Because of how the upstream C lib is written, the lowest level wrapper method takes in a vector of vectors. There are higher level methods dispatching on `AbstractMatrix` that will convert back and forth for you. There is also an experimental method for `Tables.jl` compatible sources, though so far this has only been tested with `DataFrames`.
+Use `ti` to compute an indicator based on a `Symbol` identifier, valid identifiers can be found [here](https://tulipindicators.org/list). The lowest level wrapper method takes in a vector of vectors, there are higher level methods dispatching on `AbstractMatrix` that will convert back and forth for you. There is also an experimental method for `Tables.jl` compatible sources, though so far this has only been tested with `DataFrame`.
 
 The indicator may require options (parameters) to be supplied. The meaning and valid number of options can be found at the [upstream Tulip Indicators website](https://tulipindicators.org/list) or by calling `ti_info(:<identifier>)`.
 
