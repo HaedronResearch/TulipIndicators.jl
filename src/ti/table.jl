@@ -3,6 +3,7 @@ TulipIndicators.jl Indicator Tables.jl Interface.
 """
 
 """
+$(TYPEDSIGNATURES)
 Tables.jl compatible `ti` call.
 
 After applying `mapping` to tulip's input name list for the selected indicator, columns are selected as inputs by name.
