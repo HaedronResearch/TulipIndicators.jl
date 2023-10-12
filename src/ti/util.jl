@@ -1,25 +1,21 @@
 """
-TulipIndicators.jl Indicator Utilities.
-"""
-
-"""
 $(TYPEDSIGNATURES)
-Convert indicator type int to a string.
+Convert indicator type int to a symbol.
 """
 function ti_type(t::Integer)
-	t == TI_TYPE_OVERLAY && return "overlay"
-	t == TI_TYPE_INDICATOR && return "indicator"
-	t == TI_TYPE_MATH && return "math"
-	t == TI_TYPE_SIMPLE && return "simple"
-	t == TI_TYPE_COMPARATIVE && return "comparitive"
-	return "unknown"
+	t == TI_TYPE_OVERLAY && return :overlay
+	t == TI_TYPE_INDICATOR && return :indicator
+	t == TI_TYPE_MATH && return :math
+	t == TI_TYPE_SIMPLE && return :simple
+	t == TI_TYPE_COMPARATIVE && return :comparitive
+	return :unknown
 end
 
 """
 $(TYPEDSIGNATURES)
 Input validation for `ti` calls.
 """
-function ti_validate_inputs(Pₜ::AbstractVector{Vector{TI_REAL}}, opt::AbstractVector{TI_REAL}, info::ti_indicator_info)
+function ti_validate_inputs(Pₜ::AbstractVector{<:AbstractVector{TI_REAL}}, opt::AbstractVector{TI_REAL}, info::ti_indicator_info)
 	@assert length(Pₜ) == info.inputs "indicator requires exactly $(info.inputs) input vector(s)"
 	@assert length(opt) == info.options "indicator requires exactly $(info.options) option(s)"
 end

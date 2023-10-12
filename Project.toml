@@ -1,9 +1,13 @@
 name = "TulipIndicators"
 uuid = "245c46a6-c642-460a-b06d-d3e7f4fd5245"
+license = "BSD-2-Clause"
 authors = ["kevindirect <git@kevindirect.com>"]
-version = "0.2.0"
+version = "0.3.0"
 
 [deps]
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
-Tables = "bd369af6-aec1-5ad0-b16a-f7cc5008161c"
+PaddedViews = "5432bcbf-9aad-5242-b902-cca2824c8663"
 TulipIndicators_jll = "b73d36f2-ba1b-519d-99df-fa501440d401"
+
+[compat]
+julia = "^1.2"

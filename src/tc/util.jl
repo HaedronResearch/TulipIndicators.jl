@@ -1,8 +1,4 @@
 """
-TulipIndicators.jl Candle Utilities.
-"""
-
-"""
 $(TYPEDSIGNATURES)
 Return information about a candle as a `tc_candle_info` struct.
 """
