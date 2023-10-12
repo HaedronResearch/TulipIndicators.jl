@@ -4,8 +4,8 @@ using TulipIndicators_jll
 using PaddedViews
 using DocStringExtensions: TYPEDSIGNATURES
 
-export ti, tip, ti_info
-export tc, tc_info
+export ti, tip, ti_show
+export tc, tc_show
 
 const VALIDATE = true # globally toggles ti input validation and exit code checks
 

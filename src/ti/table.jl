@@ -12,7 +12,7 @@ After computing the indicator, the output is converted to the input Table type `
 function ti(name::Symbol, tableₜ::T, opt::AbstractVector{TI_REAL}=TI_REAL[]; validate::Bool=VALIDATE, mapping::AbstractVector=[:real=>:close], index::Union{Integer,Symbol,Nothing}=1) where {T}
 	validate && ((Tables.istable(T) && Tables.columnaccess(T)) || throw("input must be a Tables.jl column accessible table"))
 	info = ti_find_indicator(name)
-	infoj = ti_info(info)
+	infoj = ti_show(info)
 	inputs = replace(infoj[:inputs], mapping...)
 	outputs = infoj[:outputs]
 
@@ -43,7 +43,7 @@ end
 # 	validate && ((Tables.istable(T) && Tables.columnaccess(T)) || throw("input must be a Tables.jl column accessible table"))
 
 # 	info = ti_find_indicator(name)
-# 	d = ti_info(info)
+# 	d = ti_show(info)
 # 	inputs = replace(d[:inputs], mapping...)
 # 	outputs = d[:outputs]
 

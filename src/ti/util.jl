@@ -34,7 +34,7 @@ end
 $(TYPEDSIGNATURES)
 Return global information about the Tulip Indicators install.
 """
-function ti_info()::NamedTuple
+function ti_show()::NamedTuple
 	(
 		version = (@ccall libindicators.ti_version()::Cstring) |> unsafe_string,
 		build = (@ccall libindicators.ti_build()::Clong),
@@ -46,15 +46,15 @@ end
 $(TYPEDSIGNATURES)
 Return information about an indicator.
 """
-function ti_info(name::Symbol)::NamedTuple
-	ti_info(ti_find_indicator(name))
+function ti_show(name::Symbol)::NamedTuple
+	ti_show(ti_find_indicator(name))
 end
 
 """
 $(TYPEDSIGNATURES)
 Return information about an indicator.
 """
-function ti_info(info::ti_indicator_info)::NamedTuple
+function ti_show(info::ti_indicator_info)::NamedTuple
 	(
 		type = ti_type(info.type),
 		full_name = unsafe_string(info.full_name),

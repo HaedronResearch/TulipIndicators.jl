@@ -12,7 +12,7 @@ end
 $(TYPEDSIGNATURES)
 Return global information about the Tulip Candles install.
 """
-function tc_info()::NamedTuple
+function tc_show()::NamedTuple
 	(
 		version = (@ccall libindicators.tc_version()::Cstring) |> unsafe_string,
 		build = (@ccall libindicators.tc_build()::Clong),
@@ -24,7 +24,7 @@ end
 $(TYPEDSIGNATURES)
 Return information about a candle.
 """
-function tc_info(name::Symbol)::NamedTuple
+function tc_show(name::Symbol)::NamedTuple
 	info = tc_find_candle(name)
 	(
 		full_name = unsafe_string(info.full_name),
