@@ -22,7 +22,7 @@ julia> ti_show()
 (version = "0.9.2", build = 1660687722, indicator_count = 104)
 
 julia> ti_show(:atr)
-(type = "indicator", full_name = "Average True Range", inputs = [:high, :low, :close], options = [:period], outputs = [:atr])
+(type = :indicator, inputs = 3, options = 1, outputs = 1, input_names = [:high, :low, :close], option_names = [:period], output_names = [:atr], start = Ptr{Nothing} ..., indicator = Ptr{Nothing} ..., indicator_ref = Ptr{Nothing} ...)
 
 julia> n=10
 julia> hlc = [cumsum(ones(n)), -cumsum(ones(n)), zeros(n)]
