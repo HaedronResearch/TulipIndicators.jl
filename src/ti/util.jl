@@ -4,9 +4,9 @@ Materialized Tulip Indicator info tuple
 const TI_INFO_NT = @NamedTuple begin
 	type::Symbol
 	# full_name::String
-	inputs::Int
-	options::Int
-	outputs::Int
+	inputs::Cint
+	options::Cint
+	outputs::Cint
 	input_names::Vector{Symbol}
 	option_names::Vector{Symbol}
 	output_names::Vector{Symbol}
