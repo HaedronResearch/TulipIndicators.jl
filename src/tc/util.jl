@@ -1,4 +1,15 @@
 """
+Materialized Tulip Candle info tuple
+"""
+const TC_INFO_NT = @NamedTuple begin
+	# full_name::String
+	pattern::tc_set
+	candle::tc_candle_function
+end
+
+const TC_INFO = Union{tc_candle_info, TC_INFO_NT}
+
+"""
 $(TYPEDSIGNATURES)
 Return information about a candle as a `tc_candle_info` struct.
 """
@@ -24,11 +35,12 @@ end
 $(TYPEDSIGNATURES)
 Return information about a candle.
 """
-function tc_show(name::Symbol)::NamedTuple
+function tc_show(name::Symbol)::TC_INFO_NT
 	info = tc_find_candle(name)
 	(
-		full_name = unsafe_string(info.full_name),
-		pattern = info.pattern
+		# full_name = unsafe_string(info.full_name),
+		pattern = info.pattern,
+		candle = info.candle
 	)
 end
 

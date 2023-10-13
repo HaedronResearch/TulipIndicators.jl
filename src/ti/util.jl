@@ -10,11 +10,11 @@ const TI_INFO_NT = @NamedTuple begin
 	input_names::Vector{Symbol}
 	option_names::Vector{Symbol}
 	output_names::Vector{Symbol}
-	start::Ptr{Nothing}
-	indicator::Ptr{Nothing}
-	indicator_ref::Ptr{Nothing}
+	start::ti_indicator_start_function
+	indicator::ti_indicator_function
+	indicator_ref::ti_indicator_function
 end
- 
+
 const TI_INFO = Union{ti_indicator_info, TI_INFO_NT}
 
 """
