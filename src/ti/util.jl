@@ -1,4 +1,23 @@
 """
+Materialized Tulip Indicator info tuple
+"""
+const TI_INFO_NT = @NamedTuple begin
+	type::Symbol
+	# full_name::String
+	inputs::Int
+	options::Int
+	outputs::Int
+	input_names::Vector{Symbol}
+	option_names::Vector{Symbol}
+	output_names::Vector{Symbol}
+	start::Ptr{Nothing}
+	indicator::Ptr{Nothing}
+	indicator_ref::Ptr{Nothing}
+end
+ 
+const TI_INFO = Union{ti_indicator_info, TI_INFO_NT}
+
+"""
 $(TYPEDSIGNATURES)
 Convert indicator type int to a symbol.
 """
@@ -15,7 +34,7 @@ end
 $(TYPEDSIGNATURES)
 Input validation for `ti` calls.
 """
-function ti_validate_inputs(Pₜ::AbstractVector{<:AbstractVector{TI_REAL}}, opt::AbstractVector{TI_REAL}, info::ti_indicator_info)
+function ti_validate_inputs(Pₜ::AbstractVector{<:AbstractVector{T}}, opt::AbstractVector{T}, info::TI_INFO) where {T<:TI_REAL}
 	@assert length(Pₜ) == info.inputs "indicator requires exactly $(info.inputs) input vector(s)"
 	@assert length(opt) == info.options "indicator requires exactly $(info.options) option(s)"
 end
@@ -46,21 +65,26 @@ end
 $(TYPEDSIGNATURES)
 Return information about an indicator.
 """
-function ti_show(name::Symbol)::NamedTuple
+function ti_show(name::Symbol)::TI_INFO_NT
 	ti_show(ti_find_indicator(name))
 end
 
 """
 $(TYPEDSIGNATURES)
-Return information about an indicator.
+Parse `ti_indicator_info` into a readable format.
 """
-function ti_show(info::ti_indicator_info)::NamedTuple
+function ti_show(info::ti_indicator_info)::TI_INFO_NT
 	(
 		type = ti_type(info.type),
-		full_name = unsafe_string(info.full_name),
-		inputs = [Symbol(unsafe_string(info.input_names[i])) for i in 1:info.inputs],
-		options = [Symbol(unsafe_string(info.option_names[i])) for i in 1:info.options],
-		outputs = [Symbol(unsafe_string(info.output_names[i])) for i in 1:info.outputs]
+		# full_name = unsafe_string(info.full_name),
+		inputs = info.inputs,
+		options = info.options,
+		outputs = info.outputs,
+		input_names = [Symbol(unsafe_string(info.input_names[i])) for i in 1:info.inputs],
+		option_names = [Symbol(unsafe_string(info.option_names[i])) for i in 1:info.options],
+		output_names = [Symbol(unsafe_string(info.output_names[i])) for i in 1:info.outputs],
+		start = info.start,
+		indicator = info.indicator,
+		indicator_ref = info.indicator_ref
 	)
 end
-

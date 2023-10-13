@@ -25,7 +25,7 @@ end
 """
 $(TYPEDSIGNATURES)
 Nested Vector `tc`.
-This is the only method that calls libindicators code.
+This is the only method that computes candles.
 """
 function tc(info::tc_candle_info, Pₜ::AbstractVector{<:AbstractVector{TC_REAL}}, opt::AbstractVector{TC_REAL}=TC_REAL[]; validate::Bool=VALIDATE)
 	n = length(Pₜ[1])
