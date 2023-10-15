@@ -2,9 +2,6 @@
 
 A simple Julia wrapper for [Tulip Indicators](https://github.com/TulipCharts/tulipindicators).
 
-## Getting Started
-Download and install the package from the REPL with `] add <this_repo_url>`.
-
 ## Overview
 The only functions this package exports are: `ti{p}`, `tc`, and `{ti, tc}_show`. Use `ti` to compute an indicator based on a `Symbol` identifier, valid identifiers can be found [here](https://tulipindicators.org/list).
 
