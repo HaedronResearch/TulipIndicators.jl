@@ -3,9 +3,9 @@
 A simple Julia wrapper for [Tulip Indicators](https://github.com/TulipCharts/tulipindicators).
 
 ## Overview
-The only functions this package exports are: `ti{p}`, `tc`, and `{ti, tc}_show`. Use `ti` to compute an indicator based on a `Symbol` identifier, valid identifiers can be found [here](https://tulipindicators.org/list).
+The only functions this package exports are: `ti{p}`, `tc`, and `{ti, tc}_show`. Use `ti` to compute an indicator based on a `Symbol` identifier. The indicator may require options (parameters) to be supplied. 
 
-The indicator may require options (parameters) to be supplied. The meaning and valid number of options can be found at the [upstream Tulip Indicators website](https://tulipindicators.org/list) or by calling `ti_show(:<identifier>)`.
+The [upstream Tulip Indicators website](https://tulipindicators.org/list) lists the valid indicators and their identifiers. The indicator options can also be found at the upstream website or by calling `ti_show(:<identifier>)`.
 
 The lowest level wrapper method takes in a vector of vectors. There are higher level methods dispatching on `AbstractMatrix`. All methods output a `Matrix` result. Use `tip` if you want a `PaddedView` output (pad element is `missing` by default).
 
@@ -67,7 +67,7 @@ julia> tip(:atr, hcat(hlc...), [3.]) # matrix, padded output
 * This avoids a whole bunch of unnecessary function definitions because `@ccall`/`ccall` [cannot be efficiently `@eval`ed over](https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/#Non-constant-Function-Specifications).
 
 ## TODO
-* Put all the indicator information into a constant table deserialized from disk when the package is loaded.
+* Put all the indicator information into a constant table deserialized when the package is loaded.
 * An interface for `NamedTuple` instead of `AbstractVector` option arguments, so option names can be included in `ti{p}` calls.
 * Add [tindicators](https://github.com/3jane/tindicators) Tulip Indicators fork library
 

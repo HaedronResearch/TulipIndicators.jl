@@ -8,6 +8,3 @@ version = "0.3.0"
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 PaddedViews = "5432bcbf-9aad-5242-b902-cca2824c8663"
 TulipIndicators_jll = "b73d36f2-ba1b-519d-99df-fa501440d401"
-
-[compat]
-julia = "^1.2"
