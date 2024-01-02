@@ -1,7 +1,7 @@
 name = "TulipIndicators"
 uuid = "245c46a6-c642-460a-b06d-d3e7f4fd5245"
-license = "LGPL-3.0"
 authors = ["kevindirect <git@kevindirect.com>"]
+license = "LGPL-3.0"
 version = "0.3.0"
 
 [deps]
