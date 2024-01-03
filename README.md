@@ -1,6 +1,14 @@
 # TulipIndicators.jl
 
+## Purpose
 A simple Julia wrapper for [Tulip Indicators](https://github.com/TulipCharts/tulipindicators).
+
+## Install
+Install this package to your Julia project environment as you would any other package from a Git repo. From the Julia REPL:
+```
+julia> ]
+(MyProject) pkg> add https://github.com/HaedronResearch/TulipIndicators.jl
+```
 
 ## Overview
 The only functions this package exports are: `ti{p}`, `tc`, and `{ti, tc}_show`. Use `ti` to compute an indicator based on a `Symbol` identifier. The indicator may require options (parameters) to be supplied. 
@@ -10,13 +18,6 @@ The [upstream Tulip Indicators website](https://tulipindicators.org/list) lists 
 The lowest level wrapper method takes in a vector of vectors. There are higher level methods dispatching on `AbstractMatrix`. All methods output a `Matrix` result. Use `tip` if you want a `PaddedView` output (pad element is `missing` by default).
 
 The `tc` function provides an interface to Tulip Candles. This is not a priority for me, but the interface exists if you want to play with it. I couldn't find documentation on the candle patterns.
-
-## Install
-Install this package to your Julia project environment as you would any other package from a Git repo. From the Julia REPL:
-```
-julia> ]
-(MyProject) pkg> add https://github.com/HaedronResearch/TulipIndicators.jl
-```
 
 ## Toy Example
 ```julia
