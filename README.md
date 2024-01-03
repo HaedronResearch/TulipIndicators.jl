@@ -4,7 +4,8 @@
 A simple Julia wrapper for [Tulip Indicators](https://github.com/TulipCharts/tulipindicators).
 
 ## Install
-Install this package to your Julia project environment as you would any other package from a Git repo. From the Julia REPL:
+Install this package to your Julia project environment as you would any other package from a Git repo.
+From the Julia REPL:
 ```
 julia> ]
 (MyProject) pkg> add https://github.com/HaedronResearch/TulipIndicators.jl
