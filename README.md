@@ -11,6 +11,13 @@ The lowest level wrapper method takes in a vector of vectors. There are higher l
 
 The `tc` function provides an interface to Tulip Candles. This is not a priority for me, but the interface exists if you want to play with it. I couldn't find documentation on the candle patterns.
 
+## Install
+Install this package to your Julia project environment as you would any other package from a Git repo. From the Julia REPL:
+```
+julia> ]
+(MyProject) pkg> add https://github.com/HaedronResearch/TulipIndicators.jl
+```
+
 ## Toy Example
 ```julia
 julia> using TulipIndicators
