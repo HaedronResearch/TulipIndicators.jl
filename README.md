@@ -5,6 +5,7 @@ A simple Julia wrapper for [Tulip Indicators](https://github.com/TulipCharts/tul
 
 ## Install
 Install this package to your Julia project environment as you would any other package from a Git repo.
+
 From the Julia REPL:
 ```
 julia> ]
