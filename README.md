@@ -1,5 +1,9 @@
 # TulipIndicators.jl
 
+[![Aqua QA](https://raw.githubusercontent.com/JuliaTesting/Aqua.jl/master/badge.svg)](https://github.com/JuliaTesting/Aqua.jl)
+
+[![DispatchDoctor](https://img.shields.io/badge/%F0%9F%A9%BA_tested_with-DispatchDoctor.jl-blue?labelColor=white)](https://github.com/MilesCranmer/DispatchDoctor.jl)
+
 A simple Julia wrapper for [Tulip Indicators](https://github.com/TulipCharts/tulipindicators).
 
 ## Overview
@@ -7,7 +11,7 @@ The only functions this package exports are: `ti{p}`, `tc`, and `{ti, tc}_show`.
 
 The [upstream Tulip Indicators website](https://tulipindicators.org/list) lists the valid indicators and their identifiers. The indicator options can also be found at the upstream website or by calling `ti_show(:<identifier>)`.
 
-The lowest level wrapper method takes in a vector of vectors. There are higher level methods dispatching on `AbstractMatrix`. All methods output a `Matrix` result. Use `tip` if you want a `PaddedView` output (pad element is `missing` by default).
+The lowest level wrapper method takes in a vector of vectors. There are higher level methods dispatching on `AbstractMatrix`. All methods output a matrix result. Use `tip` if you want a `PaddedView` output (pad element is `missing` by default).
 
 The `tc` function provides an interface to Tulip Candles. This is not a priority for me, but the interface exists if you want to play with it. I couldn't find documentation on the candle patterns.
 

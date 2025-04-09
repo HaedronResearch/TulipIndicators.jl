@@ -11,14 +11,14 @@ end
 
 """
 $(TYPEDSIGNATURES)
-Convert matrix to vector of vectors, using the method described here:
+Return view of matrix/vector as vector of vectors, using the method described here:
 https://discourse.julialang.org/t/converting-a-matrix-into-an-array-of-arrays/17038
 """
-@inline nestedvector(Pₜ::AbstractVecOrMat) = [pₜ[:] for pₜ in eachcol(Pₜ)]
+@inline nestedvector(Pₜ::AbstractVecOrMat) = collect(eachcol(Pₜ))
 
 """
 $(TYPEDSIGNATURES)
 Convert vector of vectors to matrix.
 """
-@inline matrix(Pₜ::AbstractVector{<:AbstractVector}) = reduce(hcat, Pₜ)
+@inline matrix(Pₜ::AbstractVector{<:AbstractVector}) = stack(Pₜ)
 

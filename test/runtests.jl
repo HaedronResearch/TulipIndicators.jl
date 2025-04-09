@@ -1,6 +1,12 @@
-using TulipIndicators
-using Test
 # The tests are to test the julia interface, not correctness of the C computations
+using Test
+using Preferences: set_preferences!
+set_preferences!("TulipIndicators", "dispatch_doctor_mode" => "error")
+
+# using Aqua
+# Aqua.test_all(TulipIndicators)
+
+using TulipIndicators
 
 @testset "array,multi_input,no_options" begin
 	let n = 10

@@ -1,10 +1,11 @@
 name = "TulipIndicators"
 uuid = "245c46a6-c642-460a-b06d-d3e7f4fd5245"
-authors = ["K Patel <git@kevindirect.com>"]
 license = "LGPL-3.0"
-version = "0.3.0"
+authors = ["Kevin Patel <git@kevindirect.com>"]
+version = "0.3.1"
 
 [deps]
+DispatchDoctor = "8d63f2c5-f18a-4cf2-ba9d-b3f60fc568c8"
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 PaddedViews = "5432bcbf-9aad-5242-b902-cca2824c8663"
 TulipIndicators_jll = "b73d36f2-ba1b-519d-99df-fa501440d401"

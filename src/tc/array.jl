@@ -1,21 +1,21 @@
 """
 $(TYPEDSIGNATURES)
 """
-@inline function tc(name::Symbol, Pₜ::AbstractVecOrMat{T}, opt::AbstractVector{T}=T[]; validate::Bool=VALIDATE) where {T<:TC_REAL}
+function tc(name::Symbol, Pₜ::AbstractVecOrMat{T}, opt::AbstractVector{T}=T[]; validate::Bool=VALIDATE) where {T<:TC_REAL}
 	tc(tc_find_candle(name), Pₜ, opt; validate=validate)
 end
 
 """
 $(TYPEDSIGNATURES)
 """
-@inline function tc(name::Symbol, Pₜ::AbstractVector{<:AbstractVector{T}}, opt::AbstractVector{T}=T[]; validate::Bool=VALIDATE) where {T<:TC_REAL}
+function tc(name::Symbol, Pₜ::AbstractVector{<:AbstractVector{T}}, opt::AbstractVector{T}=T[]; validate::Bool=VALIDATE) where {T<:TC_REAL}
 	tc(tc_find_candle(name), Pₜ, opt; validate=validate)
 end
 
 """
 $(TYPEDSIGNATURES)
 """
-@inline function tc(info::TC_INFO, Pₜ::AbstractVecOrMat{T}, opt::AbstractVector{T}=T[]; validate::Bool=VALIDATE) where {T<:TC_REAL}
+function tc(info::TC_INFO, Pₜ::AbstractVecOrMat{T}, opt::AbstractVector{T}=T[]; validate::Bool=VALIDATE) where {T<:TC_REAL}
 	tc(info, nestedvector(Pₜ), opt; validate=validate)
 end
 
